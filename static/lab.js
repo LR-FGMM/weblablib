@@ -14,39 +14,16 @@ function turnLight(num, state) {
 }
 
 function clean() {
-    // Not yet
-}
-
-function parseStatus(newStatus) {
-    if (newStatus.error == false) {
-        for (var i = 1; i < 11; i++) {
-            if (newStatus["lights"]["light-" + i]) {
-                $("#light_" + i + "_off").hide();
-                $("#light_" + i + "_on").show();
-            } else {
-                $("#light_" + i + "_on").hide();
-                $("#light_" + i + "_off").show();
-            }
-        }
-    }
-}
-
-var TIMER_INTERVAL = null;
-var TIME_LEFT = null;
-
-// Instead of the previously existing clean() function
-function clean() {
-    clearInterval(STATUS_INTERVAL);
-    clearInterval(TIME_LEFT);
+	clearInterval(STATUS_INTERVAL);
+	clearInterval(TIME_LEFT);
     $("#panel").hide();
     $("#timer").text("session is over");
 }
 
-// Instead of the previuosly existing parseStatus
 function parseStatus(newStatus) {
     if (newStatus.error == false) {
         for (var i = 1; i < 11; i++) {
-            if (newStatus.lights["light-" + i]) {
+            if(newStatus.lights["light-" + i]) {
                 $("#light_" + i + "_off").hide();
                 $("#light_" + i + "_on").show();
             } else {
@@ -71,7 +48,6 @@ function parseStatus(newStatus) {
     }
 }
 
-
 var STATUS_INTERVAL = setInterval(function () {
 
     $.get(STATUS_URL).done(parseStatus).fail(clean);
@@ -79,3 +55,6 @@ var STATUS_INTERVAL = setInterval(function () {
 }, 1000);
 
 $.get(STATUS_URL).done(parseStatus);
+
+var TIMER_INTERVAL = null;
+var TIME_LEFT = null;
