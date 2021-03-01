@@ -8,7 +8,7 @@ app.config.update({
     'SECRET_KEY': 'something-random',
     'WEBLAB_CALLBACK_URL': '/mycallback',
     'WEBLAB_USERNAME': 'weblabdeusto',
-    'WEBLAB_PASSWORD': 'fgmm2021',
+    'WEBLAB_PASSWORD': 'secret',
 })
 
 weblab = WebLab(app)
